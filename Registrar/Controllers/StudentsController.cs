@@ -50,56 +50,56 @@ namespace Registrar.Controllers
     public ActionResult Edit(int id)
     {
       var thisStudent = _db.Students.FirstOrDefault(students => students.StudentId == id);
-      ViewBag.CourseId = new SelectList(_db.Categories, "CategoryId", "Name");
-      return View(thisItem);
+      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "CourseName");
+      return View(thisStudent);
     }
     [HttpPost]
-    public ActionResult Edit(Item item, int CategoryId)
+    public ActionResult Edit(Student student, int CourseId)
     {
-      if  (CategoryId != 0)
+      if  (CourseId != 0)
       {
-        _db.CategoryItem.Add(new CategoryItem() {CategoryId = CategoryId, ItemId = item.ItemId});
+        _db.CourseStudent.Add(new CourseStudent() {CourseId = CourseId, StudentId = student.StudentId});
       }
-      _db.Entry(item).State = EntityState.Modified;
+      _db.Entry(studnet).State = EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Details", new { id = item.ItemId });
+      return RedirectToAction("Details", new { id = student.StudentId });
     }
 
-    public ActionResult AddCategory(int id)
+    public ActionResult AddCourse(int id)
     {
-      var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
-      ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
-      return View(thisItem);
+      var thisStudent = _db.Items.FirstOrDefault(students => students.StudentId == id);
+      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "CourseName");
+      return View(thisStudent);
     }
     [HttpPost]
-    public ActionResult AddCategory(Item item, int CategoryId)
+    public ActionResult AddCourse(Student student, int CourseId)
     {
-      if (CategoryId != 0)
+      if (CourseId != 0)
       {
-        _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId });
+        _db.CourseStudent.Add(new CourseStudent() { CourseId = CourseId, StudentId = student.StudentId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
     public ActionResult Delete(int id)
     {
-      var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
-      return View(thisItem);
+      var thisStudent = _db.Items.FirstOrDefault(students => students.StudentId == id);
+      return View(thisStudent);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
-      _db.Items.Remove(thisItem);
+      var thisStudent = _db.Items.FirstOrDefault(students => students.StudentId == id);
+      _db.Students.Remove(thisStudent);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
     [HttpPost]
-    public ActionResult DeleteCategory(int joinId, Item item)  // added Item item
+    public ActionResult DeleteCourse(int joinId, Student student)  // added Item item
     {
-      var joinEntry = _db.CategoryItem.FirstOrDefault(entry => entry.CategoryItemId == joinId);
-      _db.CategoryItem.Remove(joinEntry);
+      var joinEntry = _db.CategoryItem.FirstOrDefault(entry => entry.CourseStudentId == joinId);
+      _db.CourseStudent.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
