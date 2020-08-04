@@ -22,7 +22,7 @@ else
     <li>@join.Course.CourseName</li>
     @using (Html.BeginForm("DeleteCourse", "Students", new { id = Model.StudentId }))
     {
-      @Html.Hidden("joinId", @join.CourseStudentId)
+      @Html.Hidden("joinId", @join.DepartmentCourseStudentId)
       <input type="submit" value="Delete" class="btn btn-outline-dark" />
     }
   }

@@ -32,7 +32,7 @@ namespace Registrar.Controllers
       _db.Students.Add(student);
       if (CourseId != 0)
       {
-        _db.CourseStudent.Add(new CourseStudent() { CourseId = CourseId, StudentId = student.StudentId });
+        _db.DepartmentCourseStudent.Add(new DepartmentCourseStudent() { CourseId = CourseId, StudentId = student.StudentId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -58,7 +58,7 @@ namespace Registrar.Controllers
     {
       if  (CourseId != 0)
       {
-        _db.CourseStudent.Add(new CourseStudent() {CourseId = CourseId, StudentId = student.StudentId});
+        _db.DepartmentCourseStudent.Add(new DepartmentCourseStudent() {CourseId = CourseId, StudentId = student.StudentId});
       }
       _db.Entry(student).State = EntityState.Modified;
       _db.SaveChanges();
@@ -76,7 +76,7 @@ namespace Registrar.Controllers
     {
       if (CourseId != 0)
       {
-        _db.CourseStudent.Add(new CourseStudent() { CourseId = CourseId, StudentId = student.StudentId });
+        _db.DepartmentCourseStudent.Add(new DepartmentCourseStudent() { CourseId = CourseId, StudentId = student.StudentId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -98,8 +98,8 @@ namespace Registrar.Controllers
     [HttpPost]
     public ActionResult DeleteCourse(int joinId, Student student)  // added Item item
     {
-      var joinEntry = _db.CourseStudent.FirstOrDefault(entry => entry.CourseStudentId == joinId);
-      _db.CourseStudent.Remove(joinEntry);
+      var joinEntry = _db.DepartmentCourseStudent.FirstOrDefault(entry => entry.DepartmentCourseStudentId == joinId);
+      _db.DepartmentCourseStudent.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

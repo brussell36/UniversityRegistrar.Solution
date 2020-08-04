@@ -6,12 +6,12 @@ namespace Registrar.Models
   {
     public Student()
     {
-      this.Courses = new HashSet<CourseStudent>();
+      this.Courses = new HashSet<DepartmentCourseStudent>();
     }
 
     public int StudentId { get; set; }
     public string Name { get; set; }
     public bool Completed { get; set; } = false;
-    public ICollection<CourseStudent> Courses { get; }
+    public ICollection<DepartmentCourseStudent> Courses { get; }
   }
 }
