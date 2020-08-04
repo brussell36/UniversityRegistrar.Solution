@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ToDoList.Models;
+using Registrar.Models;
 
-namespace ToDoList
+namespace Registrar
 {
   public class Startup
   {

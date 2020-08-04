@@ -1,38 +1,38 @@
 using Microsoft.AspNetCore.Mvc;
-using ToDoList.Models;
+using Registrar.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace ToDoList.Controllers
+namespace Registrar.Controllers
 {
-  public class ItemsController : Controller
+  public class StudentsController : Controller
   {
-    private readonly ToDoListContext _db;
+    private readonly RegistrarContext _db;
 
-    public ItemsController(ToDoListContext db)
+    public StudentsController(RegistrarContext db)
     {
       _db = db;
     }
 
     public ActionResult Index()
     {
-      return View(_db.Items.ToList());
+      return View(_db.Students.ToList());
     }
 
     public ActionResult Create()
     {
-      ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
+      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "CourseName");
       return View();
     }
     [HttpPost]
-    public ActionResult Create(Item item, int CategoryId)
+    public ActionResult Create(Student student, int CourseId)
     {
-      _db.Items.Add(item);
-      if (CategoryId != 0)
+      _db.Students.Add(student);
+      if (CourseId != 0)
       {
-        _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId });
+        _db.CourseStudent.Add(new CourseStudent() { CourseId = CourseId, StudentId = student.StudentId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -40,17 +40,17 @@ namespace ToDoList.Controllers
 
     public ActionResult Details(int id)
     {
-      var thisItem = _db.Items
-          .Include(item => item.Categories)
-          .ThenInclude(join => join.Category)
-          .FirstOrDefault(item => item.ItemId == id);
-      return View(thisItem);
+      var thisStudent = _db.Student
+          .Include(student => student.Courses)
+          .ThenInclude(join => join.Course)
+          .FirstOrDefault(student => student.StudentId == id);
+      return View(thisStudent);
     }
 
     public ActionResult Edit(int id)
     {
-      var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
-      ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
+      var thisStudent = _db.Students.FirstOrDefault(students => students.StudentId == id);
+      ViewBag.CourseId = new SelectList(_db.Categories, "CategoryId", "Name");
       return View(thisItem);
     }
     [HttpPost]
