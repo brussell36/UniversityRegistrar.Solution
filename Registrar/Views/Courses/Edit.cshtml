@@ -2,19 +2,19 @@
   Layout = "_Layout";
 }
 
-@model ToDoList.Models.Category
+@model Registrar.Models.Course
 
 <h2>Edit</h2>
 
-<h4>Edit this category: @Html.DisplayFor(model => model.Name)</h4>
+<h4>Edit this course: @Html.DisplayFor(model => model.CourseName)</h4>
 
 @using (Html.BeginForm())
 {
-    @Html.HiddenFor(model => model.CategoryId)
+    @Html.HiddenFor(model => model.CourseId)
 
-    @Html.LabelFor(model => model.Name)
-    @Html.EditorFor(model => model.Name)
+    @Html.LabelFor(model => model.CourseName)
+    @Html.EditorFor(model => model.CourseName)
 
     <input type="submit" value="Save" class="btn btn-outline-dark" />
 }
-<p>@Html.ActionLink("Back to categories", "Index")</p>
+<p>@Html.ActionLink("Back to courses", "Index")</p>

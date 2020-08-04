@@ -12,8 +12,8 @@
     @Html.TextBoxFor(model => model.Name, new {@class="form-control"})
 
     @Html.Label("Select course")
-    @Html.DropDownList("CategoryId")     //DropDownList() is an Html helper method
+    @Html.DropDownList("CourseId")     //DropDownList() is an Html helper method
 
-    <input type="submit" value="Add new item" class="btn btn-default" />
+    <input type="submit" value="Add new student" class="btn btn-outline-dark" />
 }
-<p>@Html.ActionLink("Show all items", "Index")</p>
+<p>@Html.ActionLink("Show all students", "Index")</p>

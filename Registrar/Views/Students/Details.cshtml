@@ -2,34 +2,34 @@
   Layout = "_Layout";
 }
 
-@model ToDoList.Models.Item
+@model Registrar.Models.Student
 
-<h2>Item Details</h2>
+<h2>Student Details</h2>
 <hr />
-<h3>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</h3>
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
 <h5>@Html.DisplayNameFor(model => model.Completed): @Html.DisplayFor(model => model.Completed)</h5>
 
-@if(@Model.Categories.Count == 0)
+@if(@Model.Courses.Count == 0)
 {
-  <p>This item does not belong to any categories</p>
+  <p>This student does not belong to any courses</p>
 }
 else
 {
-  <h4>Categories the item belongs to:</h4>
+  <h4>Courses the student belongs to:</h4>
   <ul>
-  @foreach(var join in Model.Categories)
+  @foreach(var join in Model.Courses)
   {
-    <li>@join.Category.Name</li>
-    @using (Html.BeginForm("DeleteCategory", "Items", new { id = Model.ItemId }))
+    <li>@join.Course.CourseName</li>
+    @using (Html.BeginForm("DeleteCourse", "Students", new { id = Model.StudentId }))
     {
-      @Html.Hidden("joinId", @join.CategoryItemId)
+      @Html.Hidden("joinId", @join.CourseStudentId)
       <input type="submit" value="Delete" class="btn btn-outline-dark" />
     }
   }
   </ul>
 }
 
-<p>@Html.ActionLink("Back to list", "Index")</p>
-<p>@Html.ActionLink("Edit Item", "Edit", new { id = Model.ItemId })</p>
-<p>@Html.ActionLink("Delete Item", "Delete", new { id = Model.ItemId })</p>
+<p>@Html.ActionLink("Back to student list", "Index")</p>
+<p>@Html.ActionLink("Edit Student", "Edit", new { id = Model.StudentId })</p>
+<p>@Html.ActionLink("Delete Student", "Delete", new { id = Model.StudentId })</p>
 @* <p>@Html.ActionLink("Add a Category", "AddCategory", new { id = Model.ItemId })</p> *@
