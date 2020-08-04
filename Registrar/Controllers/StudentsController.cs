@@ -41,8 +41,8 @@ namespace Registrar.Controllers
     public ActionResult Details(int id)
     {
       var thisStudent = _db.Students
-          .Include(student => student.Courses)
-          .ThenInclude(join => join.Course)
+          .Include(student => student.Courses).ThenInclude(join => join.Course)
+          .Include(student => student.Departments).ThenInclude(join => join.Department)
           .FirstOrDefault(student => student.StudentId == id);
       return View(thisStudent);
     }
@@ -81,6 +81,7 @@ namespace Registrar.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+    
     public ActionResult Delete(int id)
     {
       var thisStudent = _db.Students.FirstOrDefault(students => students.StudentId == id);

@@ -63,6 +63,23 @@ namespace Registrar.Controllers
       return RedirectToAction("Index");
     }
 
+        public ActionResult AddDepartment(int id)
+    {
+      var thisCourse = _db.courses.FirstOrDefault(students => students.StudentId == id);
+      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "CourseName");
+      return View(thisStudent);
+    }
+    [HttpPost]
+    public ActionResult AddCourse(Student student, int CourseId)
+    {
+      if (CourseId != 0)
+      {
+        _db.DepartmentCourseStudent.Add(new DepartmentCourseStudent() { CourseId = CourseId, StudentId = student.StudentId });
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
     public ActionResult Delete(int id)
     {
       var thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
