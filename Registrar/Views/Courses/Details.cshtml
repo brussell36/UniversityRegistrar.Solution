@@ -7,6 +7,7 @@
 <h2>Course Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.CourseName): @Html.DisplayFor(model => model.CourseName)</h3>
+<h3>Department:</h3> @*Use a viewbag to display department name*@
 
 @if(@Model.Students.Count == 0)
 {
