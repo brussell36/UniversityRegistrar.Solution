@@ -2,13 +2,13 @@
   Layout = "_Layout";
 }
 
-@model ToDoList.Models.Category
+@model Registrar.Models.Course
 
-<h4>Add a new category</h4>
+<h4>Add a new course</h4>
 @using (Html.BeginForm())
 {
-    @Html.LabelFor(model => model.Name)
+    @Html.LabelFor(model => model.CourseName)
     @Html.TextBoxFor(model => new {@class="form-control"})
-    <input type="submit" value="Add new category" class="btn-outline-dark" />
+    <input type="submit" value="Add new course" class="btn-outline-dark" />
 }
-<p>@Html.ActionLink("Show all categories", "Index")</p>
+<p>@Html.ActionLink("Show all courses", "Index")</p>
