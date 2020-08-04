@@ -34,14 +34,14 @@ namespace Registrar.Controllers
       return RedirectToAction("Index");
     }
 
-//     public ActionResult Details(int id)
-//     {
-//       var thisDepartment = _db.Departments
-//         .Include(department => department.Courses)
-//         .ThenInclude(join => join.Student)
-//         .FirstOrDefault(department => department.DepartmentId == id);
-//       return View(thisDepartment);
-//     }
+    public ActionResult Details(int id)
+    {
+      var thisDepartment = _db.Departments
+        .Include(department => department.Courses)
+        .ThenInclude(join => join.Student)
+        .FirstOrDefault(department => department.DepartmentId == id);
+      return View(thisDepartment);
+    }
 
 //     public ActionResult Edit(int id)
 //     {
