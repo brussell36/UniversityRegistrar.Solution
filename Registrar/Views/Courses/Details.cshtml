@@ -8,10 +8,10 @@
 <h2>Course Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.CourseName): @Html.DisplayFor(model => model.CourseName)</h3>
-<h3>Department: @*@Html.DisplayFor(@join.Department.DepartmentName)</h3>*@
+<h3>Department: </h3>
 
 
-@if(@Model.Students.Count == 0)
+@if(@Model.StudentsDepartments.Count == 0)
 {
   <p>This course does not contain any students</p>
 }
@@ -19,7 +19,7 @@ else
 {
   <h4>Students this course contains:</h4>
   <ul>
-  @foreach(var join in Model.Students)
+  @foreach(var join in Model.StudentsDepartments)
   {
     <li>@Html.ActionLink(@join.Student.Name, "Details", "Students", new { id = join.StudentId })</li>
   }

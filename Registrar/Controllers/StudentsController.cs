@@ -42,7 +42,7 @@ namespace Registrar.Controllers
     {
       var thisStudent = _db.Students
           .Include(student => student.Courses).ThenInclude(join => join.Course)
-          .Include(student => student.Departments).ThenInclude(join => join.Department)
+          // .Include(student => student.Departments).ThenInclude(join => join.Department)
           .FirstOrDefault(student => student.StudentId == id);
       return View(thisStudent);
     }
